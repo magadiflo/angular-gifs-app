@@ -18,4 +18,8 @@ export class SidebarComponent implements OnInit {
 
   }
 
+  buscar(item: string): void {
+    this.gifsService.buscarGifs(item);
+  }
+
 }
