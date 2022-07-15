@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Gif, SearchGifsResponse } from '../interface/gifs-api-tipado.interface';
 
@@ -10,7 +10,7 @@ export class GifsService {
 
   resultados: Gif[] = [];
   private readonly apiKey: string = '3ZFhGljhvA8ctX3W29sNy5xCrjAqBwLE';
-  private readonly apiGif: string = 'http://api.giphy.com';
+  private readonly servicioUrl: string = 'http://api.giphy.com/v1/gifs';
   private _historial: string[] = [];
 
   get historial(): string[] {
@@ -32,7 +32,12 @@ export class GifsService {
       localStorage.setItem('historial', JSON.stringify(this._historial));
     }
 
-    this.http.get<SearchGifsResponse>(`${this.apiGif}/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10`)
+    const params = new HttpParams()
+      .set('api_key', this.apiKey)
+      .set('q', query)
+      .set('limit', 10);
+
+    this.http.get<SearchGifsResponse>(`${this.servicioUrl}/search`, { params })
       .subscribe(resp => {
         console.log(resp.data);
         this.resultados = resp.data;
