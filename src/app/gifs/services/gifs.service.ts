@@ -6,8 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GifsService {
 
+  //TODO: Cambiar any por su tipo correspondiente
+  resultados: any[] = [];
   private readonly apiKey: string = '3ZFhGljhvA8ctX3W29sNy5xCrjAqBwLE';
-  private readonly apiGif: string = 'http://api.giphy.com/v1/gifs/search?api_key=3ZFhGljhvA8ctX3W29sNy5xCrjAqBwLE&q=goku&limit=10';
+  private readonly apiGif: string = 'http://api.giphy.com';
   private _historial: string[] = [];
 
   get historial(): string[] {
@@ -23,9 +25,10 @@ export class GifsService {
       this._historial = this._historial.splice(0, 10);
     }
 
-    this.http.get(`${this.apiGif}`)
+    this.http.get(`${this.apiGif}/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10`)
       .subscribe((resp: any) => {
         console.log(resp.data);
+        this.resultados = resp.data;
       });
 
   }
