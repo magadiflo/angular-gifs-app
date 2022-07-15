@@ -16,4 +16,4 @@ Ir al siguiente link: https://animate.style/
 
 ## Proyecto subido a producción
 El proyecto fue subido al servicio de netlify: https://app.netlify.com/teams/magadiflo/overview  
-Para ver el proyecto ejecutándose, ir a esta dirección: https://fervent-chandrasekhar-13fb3f.netlify.app
+Para ver el proyecto ejecutándose, ir a esta dirección: https://neon-caramel-c9577e.netlify.app/
